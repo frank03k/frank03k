@@ -1,5 +1,13 @@
 ### Hi there 👋
 
+I’m currently learning:
+* Containerization (Docker/Podman)
+* Automation (Ansible)
+* Python development
+* Bash scripting
+* Go development
+
+
 <!--
 **frank03k/frank03k** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
