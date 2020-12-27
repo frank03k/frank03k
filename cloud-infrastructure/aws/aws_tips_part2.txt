@@ -1,0 +1,752 @@
+Englische Prüfungsvorbereitung / Exam Tips Part 2
+IAM – Identify and Access Management
+
+
+
+IAM is used to access AWS resources. It cannot be used to access OS of servers. Like other AWS resources, IAM falls under shared responsibility model. This means you are responsible for assigning the right access to the right user or resources, AWS is not. 
+
+
+
+You might be asked the authentication type for the below use cases in the exam:
+
+Use Case
+
+Solution
+
+Operating System Access
+
+Active Directory LDAP
+
+Machine – specific accounts
+
+Application Access
+
+Active Directory
+
+Amazon Cognito
+
+AWS Resources (very important for AWS Users you need IAM)
+
+IAM
+
+
+
+
+
+
+
+
+
+Principals
+
+IAM entity which lets you manage AWS resources. It can be temporary or permanent. 
+
+There are three types of principles:
+
+Root Users
+
+IAM Users
+
+Roles/Temporary Security Token
+
+
+
+Root user
+
+The account which you create your AWS Account
+
+Best practice is not to use it for daily tasks and lock it away
+
+It has access to all AWS resources. 
+
+
+
+IAM Users:
+
+Like user accounts in Windows.
+
+An user account is persistent, it will not expire. Unless, the administrator deletes it.
+
+A new IAM user, has no access key nor a password.
+
+
+
+Roles / Temporary Security Tokens
+
+
+
+Roles are granted access privileges for a set duration of time. (compared to USER which is persistent roles are not)
+
+When a service (actor) tries to access a resource, AWS provides a Temporary Security Token. It is valid from 15 minutes to 36 hours.
+
+Roles do not have username or access keys. 
+
+Use cases of Roles: 
+
+EC2-Server: Instead of saving S3 credentials in EC2 server, a role can be attached to the EC2 server to access S3 without username and password. 
+
+Granting permission to other AWS Account to access your resources.
+
+Federation:
+
+Let’s roles to be attached to non- AWS IAM Users. Example: A company that has migrated its resources to AWS, does not need to create the same users in AWS. It can integrate IAM with its Active Directory and attach roles to the users in the Active Directory. 
+
+IAM can integrate with the below providers: 
+
+OpenID for Google, Facebook auth.
+
+SAML for Active Directory
+
+
+
+
+
+
+
+Policies
+
+
+
+Set of action that can be executed on resources.
+
+{
+
+  "Version": "2012-10-17",
+
+  "Statement": {
+
+    "Effect": "Allow",
+
+    "Action": "s3:ListBucket",
+
+    "Resource": "arn:aws:s3:::example_bucket"
+
+  }
+
+}
+
+It is written in JSON and can be attached to a group, user or role. 
+
+Effects: Can be either Allow or Deny.
+
+Action: Which AWS service does this policy apply
+
+Resource: The Amazon Resource Name (ARN). 
+
+Condition: List of conditions that is required for the action to be allowed.
+
+
+
+Associating a policy to an IAM user can be attached in the following methods:
+
+Inline Policy.
+
+Managed Policy.
+
+Group Policy.
+
+Managed Policies.
+
+ 
+
+
+
+
+
+
+
+Ques
+
+
+
+SQS: Simple Queue Service
+
+
+
+It is used to decouple components (note: in the exam whenever you are asked how would you decouple an architecture it is always SQS)
+
+Example use case:
+
+To reduce the insert rate into the database. Data can be sent to the Queue and a process could insert the data from the queue into the database. 
+
+To reduce the delay in creating SMTP connection, data can be sent to the Queue. 
+
+Minimum size of message can be 1 byte (1 character). Maximum size of a message can be 256 KB.
+
+Queue name can be up to 80 characters. 
+
+Name of the FIFO queue must end with the .fifo suffix.  
+
+Messages can contain up to 10 metadata attributes.
+
+Dead Letter Queues: Is a queue which other queues send messages that were not processed.  It is important to keep the Dead Letter Queue empty as much as possible!
+
+
+
+There are two types of SQS
+
+Standard queues: 
+
+At-least one delivery
+
+Unlimited number of transaction.
+
+Not in any order.
+
+
+
+FIFO ques (first in first out)
+
+No duplicates.
+
+Messages are in order compared to standard queues.
+
+First queue support up to 300 messages per second.
+
+
+
+
+
+Delay Queues
+
+Postpones the delivery of new messages in a queue.
+
+Messages delivered in the queue are not accessible. 
+
+The delay can be set when a queue is created using the SetQueueAttributes. 
+
+
+
+Queue Identifiers
+
+
+
+SQS has three identifiers:
+
+URL: AWS assigns each queue a unique URL. 
+
+Unique ID: AWS assigns each message a unique ID used to identify the message.
+
+Receipt Handles: On every message received, a receipt handle is issued as-well. 
+
+“To delete a message, you would need the message receipt handle not the Message ID”
+
+
+
+Long Polling
+
+Long polling is a process of checking for messages to process in the queue. 
+
+Consider Long polling a while loop that checks for messages in the queue. However, a while loop that is continuously calling SQS for messages is inefficient and burns  CPU cycle.
+
+To save CPU cycle and be efficient, instead of checking the SQS continuously, we could send a WaitTimeSeconds  to receive messages up to a certain second (between 0 and 20 seconds)
+
+In the exam, you will be asked how to make long polling efficient, select the option which has WaitTimeSeconds. 
+
+Simple Workflow Service (SWF)
+
+
+
+SWF is difficult to understand. I would advice you to watch this video.  But, for the solution exam you would need to know the meaning of the following terms.
+
+
+
+What is it used for?
+
+
+
+SWF is used to coordinate tasks across distributed components.
+
+SWF is used in Video Encoding, Data Centre Migration,  ecommerce websites (Amazon ).
+
+(“SWF is not asked often in the exam, but usually questions related to SWF are to do with the definition , you might get one or at most 2 questions about it but it is still good to know how it  works as a solution architect you would need to know almost every AWS resources in depth ) 
+
+
+
+Key terms:
+
+Workflows
+
+Collection of activities.  
+
+Manages the order in which activities are executed
+
+Example: Let’s say on amazon.co.uk , it is the worker that receives the order of a customer.
+
+
+
+Workflow Domain:
+
+A domain must be provided for all the components of a workflow.
+
+Can have more than one workflow in a domain.
+
+Workflows in different domains cannot interact with each other.
+
+Consider workflow domain as a folder in which you place all your SWF resources. But Workflow in the folder cannot interact with another folders. 
+
+pastedGraphic.png
+
+
+
+Actors
+
+
+
+Actors can be:
+
+Starters.
+
+Deciders.
+
+Activity Workers.
+
+
+
+Starter
+
+Initiates the workflow executions.
+
+(you might receive a question; which actor is responsible for initiating workflow? Answer is Starter 😉 )
+
+
+
+Deciders
+
+Is responsible for making decision on workflow execution. 
+
+Providers the input data to the activity workers. 
+
+
+
+Activity Workers
+
+Performs the activity tasks in the workflow. 
+
+Polls for new tasks to be work on. 
+
+
+
+
+
+
+
+
+
+SWF Tasks
+
+
+
+Activity Task: informs activity Worker to execute its function. 
+
+Lambda Task: Instead of executing an activity task it invokes an AWS Lambda Tasks. 
+
+Decision Task: informs the decider that the state of the workflow has changed, so it can determine the next step. 
+
+pastedGraphic_1.png
+
+
+
+
+
+Simple Notification Service - SNS
+
+
+
+Is a publish-push mechanism. 
+
+Instead of polling for new messages, SNS pushes the messages to the subscribers.
+
+To use SNS, you would need to create a topic.
+
+It consists of:
+
+Publisher (producers) – which sends a message to a topic.
+
+Subscriber (consumer) – receives the message.
+
+The messages can be pushed to:
+
+SQS.
+
+Lambda functions.
+
+HTTP endpoints.
+
+Mobile Notifications.
+
+Send notifications to iOS devices.
+
+
+
+Differences between SQS and SNS
+
+SNS – let’s you send messages to subscribers (AWS handles it)
+
+SQS – let’s you send messages to a queue, which you would need to poll the queue to process the messages.
+
+
+
+Fanout
+
+
+
+Is when an SNS message is sent to a topic and then replicated to multiple SQS queues.  (best to read it on the AWS website)
+
+
+
+Route 53, Domain Names
+
+
+
+Route 53 is AWS DNS service, Domain purchase and health checking platform. 
+
+Key terms:
+
+Hosted Zone
+
+Collection of resource records set hosted by Amazon for a certain domain. In below there are two hosted zones. (infinitypp.com and lenova.com)
+
+pastedGraphic_2.png
+
+
+
+A hosted zone can be private or public. 
+
+Private: Used when you want a host to be routed internally in an AWS VPC.
+
+Public: Used when the host is on the internet.
+
+
+
+
+
+
+
+
+
+What makes Route 53 unique?
+
+
+
+Routing Policies is a special feature of Route 53 which lets you determine how Route53 responds to queries. 
+
+Routing Policies: (I have taken this from the routing policy of AWS website itself. Best to read it from there if some of the below is unclear) 
+
+Simple routing policy – default policy. Ideally good when you have a single resource. 
+
+Failover routing policy – Routes traffic to healthy resource when then the first resource is unhealthy (active-passive failover mechanism) . Cannot be created for private hosted zones.
+
+Geolocation Routing – Route traffic based on the geographic location where the traffic is originated.  If Route 53 cannot identify the location of the IP address it routes it to the default resource set.
+
+Geoproximity routing policy (new feature) – Route traffic based on the geographic location of your users and your resources. Best to watch the video on Youtube 
+
+pastedGraphic_3.png
+
+Latency-based Routing – Routes traffic based on the latency. Example: If you have created an ELB in the US East and one in China. When a user from Singapore visits your website, Route53 calculates the latency between Singapore and US East, Singapore and China. It will route the user to the latency endpoint. 
+
+Multivalue answer routing policy (new feature) -  When you want Route 53 to respond to DNS queries with up to eight healthy records selected at random.
+
+Weighted routing policy – when you assign weight to each endpoint. Use cases: 1) when you the same application across multiple load balancer or EC2 instances but the instance type of EC2 instances are different. So, you assign a higher weight to the higher performance instance. 2) To test new version of website send 20% to the test environment , rest to the production)
+
+Health Checking
+
+
+
+Route 53 can monitor the health of the following resources:
+
+Monitor endpoints. 
+
+Status of CloudWatch alarm.
+
+Monitor other health checks.
+
+
+
+
+
+Storage Gateways
+
+
+
+File Gateway
+
+Gateway that supports interface S3. Data can be stored and retrieved in S3 using NFS protocol.  The gateway is deployed into the on-premises environment as a virtual machine. The gateway supports objects in S3 as files on an NFS mount point. 
+
+
+
+Volume Gateway
+
+Cache volumes 
+
+Store data in S3 but retain a copy of frequently accessed data locally. 
+
+Stored Volumes
+
+When low-latency access to an entire dataset is required Stored volume is used. Data is stored locally but asynchronously synced to S3.
+
+Tape Gateway
+
+Cost-effectively and durably backup data in Amazon Glacier. 
+
+CloudFront
+
+CDN of AWS. 
+
+To reduce the distance between the user and the webserver, CDN stores the cached version of the content in various locations called “edge locations” . The user is routed to the nearest edge location.
+
+Cloudfront can work with AWS resources such as S3 or non AWS resources (websites not hosted on AWS)
+
+Key points in CloudFront
+
+Distributions: the CDN domain name. In order to use CloudFront you would need to create a distribution d123123.cloudfront.net . All you need to do is replace your domain name with the distribution name. ex: https://infinitypp.com/media/user-pic.jpg would be  https://d123123.cloudfront.net/media/user-pic.jpg
+
+Origins: the location which CloudFront fetches files. CloudFront can fetch files from the below:
+
+S3 Bucket.
+
+Custom origin.
+
+EC2 Instance.
+
+ELB
+
+Cache Control: the default expiry time is after 24 hours.  This can be controlled by using the Cache-Control Header. To remove files from the cache the invalidation API needs to be called. 
+
+
+
+
+
+Top-level Domains (TLD)
+
+Last part of a domain name. example: .com, .org, net.
+
+ICAN is responsible for it.
+
+
+
+Subdomains
+
+
+
+Godaddy.com, bingo.com are actually subdomain of .com but generally speaking we consider it as a domain. (the chances of receiving a question to test whether godaddy.com is a subdomain of .com is very low AWS examiners won’t ask silly questions but you never know 😊 )
+
+
+
+A subdomain can have multiple subdomains.  
+
+ Blog.personal.wiki.com 
+
+
+
+Fully Qualified Domain Name (FQDN)
+
+
+
+FQDN is when the domain name is completely specified. It is also referred as an absolute domain name.    
+
+pastedGraphic_4.png
+
+Figure 1http://www.omnisecu.com/tcpip/fully-qualified-domain-name-fqdn-and-partially-qualified-domain-name-pqdn.php
+
+
+
+Name Servers
+
+
+
+Are computers which maintain directory of domain names that match IP addresses. 
+
+Example: ns.1607.awsdns-27.com is one of the AWS nameservers.
+
+Different types of Record
+
+
+
+A
+
+Maps a host to an IPv4 address.
+
+AAA
+
+Maps a host to an IPv6 address.
+
+CNAME
+
+Creates an alias to a domain name.
+
+Pointer (PTR)
+
+Maps an IP address to a DNS name. Used as a Reverse DNS lookup.
+
+MX
+
+Specifies a mail exchange server.
+
+Sender Policy Framework (SPF) 
+
+SPF is a TXT record which is used as an email validation mechanism. It allows DNS owners to authorize other IP addresses to send the emails from the domain. (example: if you are planning to send emails using “MailChimp” from your domain you will configure the SPF record to match MailChimp IP etc).
+
+Start of Authority (SOA)
+
+Text (TXT)
+
+Holds some text information. Can put any text. 
+
+SOA
+
+Information stored in the DNS.
+
+Stores information about the name of the server which supplied the data. Stores the following information:
+
+The name of the DNS server.
+
+The administrator of the zone.
+
+The current version of the data file.
+
+The number of seconds that the secondary name server should wait, before checking for updates.
+
+The number of seconds a secondary name server should wait before retrying a failed zone transfer. 
+
+The maximum number of seconds that a secondary name server can use data before it must either be refreshed or expire.
+
+Default number of seconds for TTL file on resource records.
+
+
+
+
+
+
+
+Security
+
+
+
+AWS CloudTrail
+
+Simplifies compliance audit.
+
+Can log API calls.
+
+Delivers log files to an S3 bucket. 
+
+Can create two types of trail: 
+
+Trail that applies to all region.
+
+Trail that applies to one region.
+
+
+
+Amazon Inspector
+
+Automated security assessment which improves the security of application running on Amazon EC2. 
+
+Is installed as an agent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AWS directory service
+
+
+
+Microsoft AD
+
+Managed Microsoft Active Directory hosted on AWS. 
+
+Integrates AWS applications with Active Directory.
+
+To be used when there are more than 5,000 users.
+
+
+
+Simple AD
+
+Microsoft Active Directory-compatible from AWS that is powered by Samba 4. 
+
+To be used when there are fewer than 5,000 users.
+
+
+
+AD Connector
+
+Proxy service for connecting an on premises Microsoft Active Directory to the AWS cloud. 
+
+Forwards sign-in requests to the Active Directory domain controllers for authentication. 
+
+To be used when you want to use current on premise active directory to the AWS cloud.
+
+
+
+Key Management
+
+
+
+AWS KMS
+
+AWS services which lets you manage symmetric keys (create, store, enable, disable and delete)
+
+Keys generated via KMS can never be exported. 
+
+Customer Managed Keys.
+
+Data keys.
+
+Envelope Encryption.
+
+Encryption Context.
+
+AWS CloudHSM
+
+Is a  Hardware Security Modules (HSMs) .
+
+Used when you want to meet certain compliance requirement. 
+
+Use cases:  Offload SSL/TLS processing for Web Servers. Protect Private Keys, Enable Transparent Data Encrypted for databases.  Government-Validated Cryptopgrahy. 
+
+
+
+AWS OpsWork
+
+
+
+Configuration managed services which lets you manage infrastructure using Chef, Puppet and Stacks.
+
+
+
+AWS CloudFormation
+
+
+
+Declare AWS resources in JSON or YAML format. AWS resources can be defined in a CloudFormation template. It reduces manual creation of services. 
+
+Data migration
+
+
+
+AWS Snowball. 
+
+Import/export data between on-premises data storage and S3.
+
+Used for huge data migration
+
+
+
+AWS Import/Export Disk
+
+Transfer data directly to AWS using portable storage devices.

@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/f.kupsch/Documents/vagrant/mysql-57","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/data":{"create":true,"guestpath":"/data","hostpath":"/Users/f.kupsch/Documents/vagrant/mysql-57/data","disabled":false,"__vagrantfile":true}}}

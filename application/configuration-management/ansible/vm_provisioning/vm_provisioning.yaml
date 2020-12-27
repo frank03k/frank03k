@@ -1,0 +1,9 @@
+---
+- name: Provisioning new virtual machine
+  hosts: ubuntu-18-vm
+  become: true
+  roles:
+      - { role: patching }
+      - { role: disk-layout }
+      - { role: setup }
+      - { role: reboot }

@@ -1,0 +1,7 @@
+---
+- name: Playbook - collect logfiles
+  hosts: ubuntu-18-vm
+  become: true
+  roles:
+      - { role: collector }
+      - { role: transfer }

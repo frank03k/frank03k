@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+  # --> print IP-Address <--
+  config.trigger.after :up do |trigger|
+    trigger.name = "IP-Address"
+    trigger.info = "the vm has following ip address:"
+    trigger.run_remote = {inline: "ip_a=$(hostname -I | awk '{print $2}') && echo $ip_a"}
+  end
+
+  #config.vm.box = "debian/buster64"
+  config.vm.box = "package.box"
+  config.vm.network "forwarded_port", guest: 443, host: 443
+  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 6379, host: 6379
+  config.vm.network "forwarded_port", guest: 8500, host: 8500 
+  config.vm.synced_folder "traefik-config", "/traefik-config", create: true
+  config.vm.provision "shell", inline: "bash /traefik-config/install-run-docker.sh"
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.define "traefik-01" do |node|
+    node.vm.hostname = "traefik-01"
+  end
+end
