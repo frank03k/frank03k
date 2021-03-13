@@ -1,0 +1,33 @@
+{
+    "terminal.external.osxExec": "terminal.app",
+    "terminal.integrated.cursorBlinking": false,
+    "terminal.integrated.enableBold": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.rightClickCopyPaste": true,
+    "todo-tree.tree.showScanModeButton": false,
+    "vs-kubernetes": {
+        "vs-kubernetes.minikube-path.mac": "---",
+        "vs-kubernetes.helm-path.mac": "---",
+        "vs-kubernetes.draft-path.mac": "---"
+    },
+    "workbench.colorTheme": "GitHub Dark",
+    "GithubGistExplorer.explorer.gistSortBy": "Last Updated",
+    "GithubGistExplorer.explorer.gistAscending": false,
+    "GithubGistExplorer.explorer.subscriptionSortBy": "Last Updated",
+    "GithubGistExplorer.explorer.subscriptionAscending": false,
+    "redhat.telemetry.enabled": true,
+    "Notes.notesLocation": "---",
+    "workbench.iconTheme": "material-icon-theme",
+    "rsp-ui.enableStartServerOnActivation": [
+        {
+            "id": "redhat.vscode-server-connector",
+            "name": "Red Hat Server Connector",
+            "startOnActivation": true
+        }
+    ],
+    "githubNotificationsBell.oauthToken": "---",
+    "githubNotificationsBell.hideIfNone": false,
+    "GithubGistExplorer.github.token": "---",
+    "GithubGistExplorer.github.username": "---"
+}
