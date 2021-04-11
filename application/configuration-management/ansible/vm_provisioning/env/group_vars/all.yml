@@ -1,7 +1,0 @@
----
-# vars for role "disk-layout"
-vg_name: vagrant-vg
-lv_name: root
-# vars for role "setup"
-new_hostname: ubuntu-vm-2-18
-new_ipaddress: 172.28.128.17

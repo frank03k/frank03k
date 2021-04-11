@@ -1,5 +1,0 @@
----
-- name: change hostname to "{{ new_hostname }}"
-
-- name: change the ip adress
-  

@@ -1,5 +1,0 @@
----
-- name: reboot the VM
-  reboot:
-      reboot_timeout: 600
-      msg: Reboot initiated by Ansible
