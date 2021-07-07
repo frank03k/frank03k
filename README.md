@@ -48,7 +48,11 @@
 
 <!--START_SECTION:waka-->
 ```text
-No Activity tracked this Week
+YAML       4 hrs 5 mins    ██████████████░░░░░░░░░░░   55.96 % 
+Makefile   2 hrs 3 mins    ███████░░░░░░░░░░░░░░░░░░   28.25 % 
+Other      30 mins         █▓░░░░░░░░░░░░░░░░░░░░░░░   06.86 % 
+Markdown   18 mins         █░░░░░░░░░░░░░░░░░░░░░░░░   04.13 % 
+Bash       12 mins         ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.83 % 
 ```
 <!--END_SECTION:waka-->
 
