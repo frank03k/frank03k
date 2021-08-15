@@ -48,11 +48,11 @@
 
 <!--START_SECTION:waka-->
 ```text
-YAML        5 hrs 46 mins   ██████████▒░░░░░░░░░░░░░░   41.38 % 
-Markdown    3 hrs 7 mins    █████▓░░░░░░░░░░░░░░░░░░░   22.40 % 
-Makefile    1 hr 28 mins    ██▓░░░░░░░░░░░░░░░░░░░░░░   10.52 % 
-Terraform   1 hr 20 mins    ██▒░░░░░░░░░░░░░░░░░░░░░░   09.57 % 
-Docker      1 hr 4 mins     ██░░░░░░░░░░░░░░░░░░░░░░░   07.65 % 
+YAML        5 hrs 46 mins   ██████████░░░░░░░░░░░░░░░   40.63 % 
+Markdown    3 hrs 22 mins   ██████░░░░░░░░░░░░░░░░░░░   23.79 % 
+Makefile    1 hr 28 mins    ██▓░░░░░░░░░░░░░░░░░░░░░░   10.33 % 
+Terraform   1 hr 20 mins    ██▒░░░░░░░░░░░░░░░░░░░░░░   09.40 % 
+Docker      1 hr 4 mins     ██░░░░░░░░░░░░░░░░░░░░░░░   07.51 % 
 ```
 <!--END_SECTION:waka-->
 
