@@ -49,7 +49,8 @@
 <!--START_SECTION:waka-->
 
 ```text
-Other      4 hrs 6 mins    █████████▓░░░░░░░░░░░░░░░   38.55 %
+HCL          6 hrs 3 mins    ██████████░░░░░░░░░░░░░░░   40.44 %
+Other        5 hrs           ████████▒░░░░░░░░░░░░░░░░   33.42 %
 ```
 
 <!--END_SECTION:waka-->
