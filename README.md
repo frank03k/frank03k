@@ -49,10 +49,9 @@
 <!--START_SECTION:waka-->
 
 ```text
-Markdown     4 hrs 49 mins   █████████████░░░░░░░░░░░░   51.61 %
-YAML         2 hrs 27 mins   ██████▓░░░░░░░░░░░░░░░░░░   26.17 %
-PowerShell   53 mins         ██▒░░░░░░░░░░░░░░░░░░░░░░   09.51 %
-Other        30 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   05.35 %
+Markdown     4 hrs 47 mins   ███████████████████░░░░░░   75.95 %
+PowerShell   53 mins         ███▓░░░░░░░░░░░░░░░░░░░░░   14.12 %
+Other        29 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   07.90 %
 ```
 
 <!--END_SECTION:waka-->
