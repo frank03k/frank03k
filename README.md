@@ -49,9 +49,8 @@
 <!--START_SECTION:waka-->
 
 ```text
-Markdown     4 hrs 47 mins   ███████████████████░░░░░░   75.95 %
-PowerShell   53 mins         ███▓░░░░░░░░░░░░░░░░░░░░░   14.12 %
-Other        29 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   07.90 %
+Markdown     6 hrs 2 mins    ██████████████████████▒░░   89.82 %
+Other        29 mins         ██░░░░░░░░░░░░░░░░░░░░░░░   07.40 %
 ```
 
 <!--END_SECTION:waka-->
