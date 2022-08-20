@@ -49,7 +49,9 @@
 <!--START_SECTION:waka-->
 
 ```text
-Other      4 hrs 42 mins   ███████▓░░░░░░░░░░░░░░░░░   30.63 %
+Markdown   4 hrs 39 mins   ██████████▒░░░░░░░░░░░░░░   41.90 %
+YAML       4 hrs 8 mins    █████████▒░░░░░░░░░░░░░░░   37.27 %
+Other      1 hr 29 mins    ███▒░░░░░░░░░░░░░░░░░░░░░   13.46 %
 ```
 
 <!--END_SECTION:waka-->
