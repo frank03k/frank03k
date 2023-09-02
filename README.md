@@ -49,11 +49,9 @@
 <!--START_SECTION:waka-->
 
 ```txt
-Other            4 hrs 51 mins   ████████████████████▓░░░░   82.60 %
-Markdown         35 mins         ██▒░░░░░░░░░░░░░░░░░░░░░░   09.97 %
-Objective-C      19 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   05.49 %
-ActionScript 3   4 mins          ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.32 %
-Assembly         2 mins          ░░░░░░░░░░░░░░░░░░░░░░░░░   00.62 %
+Other      4 hrs 22 mins   ██████████████████████░░░   87.55 %
+Markdown   35 mins         ███░░░░░░░░░░░░░░░░░░░░░░   11.72 %
+Assembly   2 mins          ▒░░░░░░░░░░░░░░░░░░░░░░░░   00.73 %
 ```
 
 <!--END_SECTION:waka-->
